@@ -692,7 +692,9 @@ add_executable(linux-wallpaperengine
         src/WallpaperEngine/Render/Drivers/GTKOpenGLDriver.cpp
         src/WallpaperEngine/Render/Drivers/GTKOpenGLDriver.h
         src/WallpaperEngine/Input/Drivers/GTKMouseInput.cpp
-        src/WallpaperEngine/Input/Drivers/GTKMouseInput.h)
+        src/WallpaperEngine/Input/Drivers/GTKMouseInput.h
+        src/WallpaperEngine/Render/Drivers/GTKOpenGLDriverWindow.cpp
+        src/WallpaperEngine/Render/Drivers/GTKOpenGLDriverWindow.h)
 
 target_link_libraries (linux-wallpaperengine PUBLIC linux-wallpaperengine-lib)
 

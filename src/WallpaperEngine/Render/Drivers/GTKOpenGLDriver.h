@@ -1,9 +1,7 @@
 //
 // Created by vladislav on 08.07.2026.
 //
-
-#ifndef LINUX_WALLPAPERENGINE_GTKOPENGLDRIVER_H
-#define LINUX_WALLPAPERENGINE_GTKOPENGLDRIVER_H
+#pragma once
 #include "WallpaperEngine/Input/Drivers/GTKMouseInput.h"
 #include "WallpaperEngine/Render/CWallpaper.h"
 #include <gtkmm.h>
@@ -37,7 +35,6 @@ private:
     Output::Output* m_output = nullptr;
     Gtk::Window* m_window = nullptr;
     uint32_t m_frameCounter = 0;
+    static int create_gtk_window();
 };
 }
-
-#endif // LINUX_WALLPAPERENGINE_GTKOPENGLDRIVER_H
