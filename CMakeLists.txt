@@ -37,6 +37,9 @@ find_package(LZ4 REQUIRED)
 find_package(FFMPEG REQUIRED)
 find_package(PulseAudio REQUIRED)
 find_package(Freetype REQUIRED)
+find_package(PkgConfig REQUIRED)
+
+pkg_check_modules(GTKMM REQUIRED IMPORTED_TARGET gtkmm-4.0)
 
 set(ENABLE_OPT OFF)
 set(SPIRV_CROSS_FORCE_PIC ON)
@@ -685,7 +688,11 @@ add_dependencies(linux-wallpaperengine-lib libcef_dll_wrapper glslang spirv-cros
 REPLACED_SET_EXECUTABLE_TARGET_PROPERTIES(linux-wallpaperengine-lib)
 
 add_executable(linux-wallpaperengine
-    src/main.cpp)
+    src/main.cpp
+        src/WallpaperEngine/Render/Drivers/GTKOpenGLDriver.cpp
+        src/WallpaperEngine/Render/Drivers/GTKOpenGLDriver.h
+        src/WallpaperEngine/Input/Drivers/GTKMouseInput.cpp
+        src/WallpaperEngine/Input/Drivers/GTKMouseInput.h)
 
 target_link_libraries (linux-wallpaperengine PUBLIC linux-wallpaperengine-lib)
 
@@ -704,3 +711,5 @@ install(DIRECTORY ${TARGET_OUTPUT_DIRECTORY}/ DESTINATION .
     PATTERN "linux-wallpaperengine" EXCLUDE
     PATTERN "liblinux-wallpaperengine-lib.so" EXCLUDE
 )
+
+target_link_libraries(linux-wallpaperengine PRIVATE PkgConfig::GTKMM)
