@@ -39,7 +39,7 @@ find_package(PulseAudio REQUIRED)
 find_package(Freetype REQUIRED)
 find_package(PkgConfig REQUIRED)
 
-pkg_check_modules(GTKMM REQUIRED IMPORTED_TARGET gtkmm-4.0)
+pkg_check_modules(GTKMM REQUIRED IMPORTED_TARGET gtkmm-3.0)
 
 set(ENABLE_OPT OFF)
 set(SPIRV_CROSS_FORCE_PIC ON)
@@ -693,7 +693,6 @@ add_executable(linux-wallpaperengine
         src/WallpaperEngine/Render/Drivers/GTKOpenGLDriver.h
         src/WallpaperEngine/Input/Drivers/GTKMouseInput.cpp
         src/WallpaperEngine/Input/Drivers/GTKMouseInput.h
-        src/WallpaperEngine/Render/Drivers/GTKOpenGLDriverWindow.cpp
         src/WallpaperEngine/Render/Drivers/GTKOpenGLDriverWindow.h)
 
 target_link_libraries (linux-wallpaperengine PUBLIC linux-wallpaperengine-lib)

@@ -42,4 +42,4 @@ private:
     GLFWwindow* m_window = nullptr;
     uint32_t m_frameCounter = 0;
 };
-} // namespace WallpaperEngine::Render::Drivers
+}

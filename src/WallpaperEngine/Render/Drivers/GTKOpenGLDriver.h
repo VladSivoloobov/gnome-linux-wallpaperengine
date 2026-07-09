@@ -4,12 +4,19 @@
 #pragma once
 #include "WallpaperEngine/Input/Drivers/GTKMouseInput.h"
 #include "WallpaperEngine/Render/CWallpaper.h"
+#include "WallpaperEngine/Render/Drivers/VideoDriver.h"
 #include <gtkmm.h>
+#include <thread>
 
-using namespace WallpaperEngine::Render::Drivers;
-using namespace WallpaperEngine::Application;
+
+namespace WallpaperEngine::Application {
+class ApplicationContext;
+class WallpaperApplication;
+}
 
 namespace WallpaperEngine::Render::Drivers {
+using namespace WallpaperEngine::Application;
+
 class GTKOpenGLDriver final : public VideoDriver {
 public:
     explicit GTKOpenGLDriver (const char* windowTitle, ApplicationContext& context, WallpaperApplication& app);
@@ -31,10 +38,16 @@ public:
 
 private:
     ApplicationContext& m_context;
-    WallpaperEngine::Input::Drivers::GTKMouseInput m_mouseInput;
+    Input::Drivers::GTKMouseInput m_mouseInput;
     Output::Output* m_output = nullptr;
     Gtk::Window* m_window = nullptr;
+    Gtk::GLArea* m_glArea = nullptr;
     uint32_t m_frameCounter = 0;
-    static int create_gtk_window();
+    std::thread m_gtkThread;
+
+    Glib::RefPtr<Gtk::Application> create_gtk_window(const char* windowTitle);
+
+    bool on_glarea_render(const Glib::RefPtr<Gdk::GLContext>& ctx);
+    void on_glarea_realize();
 };
 }

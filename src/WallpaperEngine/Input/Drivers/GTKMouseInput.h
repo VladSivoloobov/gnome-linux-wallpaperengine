@@ -7,20 +7,23 @@
 #define LINUX_WALLPAPERENGINE_GTKMOUSEINPUT_H
 #include "WallpaperEngine/Audio/Drivers/AudioDriver.h"
 #include "WallpaperEngine/Input/MouseInput.h"
-#include "WallpaperEngine/Render/Drivers/GTKOpenGLDriver.h"
 
-using namespace WallpaperEngine::Render::Drivers;
+#include <glm/vec2.hpp>
+
+namespace WallpaperEngine::Render::Drivers {
+class GTKOpenGLDriver;
+}
 
 namespace WallpaperEngine::Input::Drivers {
 class GTKMouseInput final : public MouseInput {
 public:
-    explicit GTKMouseInput (const GTKOpenGLDriver& driver);
+    explicit GTKMouseInput (const Render::Drivers::GTKOpenGLDriver& driver);
     void update() override;
     [[nodiscard]] glm::dvec2 position() const override;
     [[nodiscard]] MouseClickStatus leftClick() const override;
     [[nodiscard]] MouseClickStatus rightClick() const override;
 private:
-    const GTKOpenGLDriver* m_driver;
+    const Render::Drivers::GTKOpenGLDriver* m_driver;
 
     glm::dvec2 m_mousePosition = {};
     glm::dvec2 m_reportedPosition = {};
